@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Proposta comercial de Henrique Primo Martins para o redesign do site institucional da Havi Ferramentas.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Proposta: redesign do site da Havi Ferramentas">
+<meta property="og:description" content="Henrique Primo Martins. Válida até 15 de outubro de 2026.">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>Proposta Havi Ferramentas</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@600;700&family=Montserrat:wght@400;500;600&display=swap">
+<style>
+/* Layout: uma coluna de leitura de 44rem, pensada primeiro para o celular. A partir de 1080px entra a bússola fixa à esquerda.
+   Paleta clara da Havi: branco, grafite e o vermelho da marca, usado só onde marca escolha, progresso ou valor. Visual único, claro, por escolha. */
+:root{
+  --ground:#ffffff;
+  --plate:#f4f3f1;
+  --line:#e2e0dc;
+  --text:#2b2b2b;
+  --muted:#5f5f5f;
+  --dim:#767676;
+  --accent:#ae1818;
+  --brand:#e00000;
+  --on-accent:#ffffff;
+  --display:"Bai Jamjuree","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --body:"Montserrat","Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --gutter:clamp(20px,5vw,56px);
+  --rail:12rem;
+  --rail-gap:clamp(48px,7vw,112px);
+  color-scheme:light;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--ground);color:var(--text);font-family:var(--body);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+[hidden]{display:none!important}
+a{color:inherit}
+p{margin:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+::selection{background:var(--accent);color:var(--on-accent)}
+.sr-only{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* Estrutura da página */
+.page{padding-inline:var(--gutter);padding-block:clamp(32px,6vw,64px) clamp(64px,10vw,120px)}
+.frame{max-width:44rem;margin-inline:auto}
+.doc{min-width:0}
+
+/* Bússola: só no computador. Mostra onde a pessoa está, o que já passou e o que vem a seguir */
+.rail{display:none}
+@media (min-width:1080px){
+  .frame{max-width:none;display:grid;grid-template-columns:var(--rail) minmax(0,44rem);column-gap:var(--rail-gap);justify-content:center}
+  .rail{display:block;position:sticky;top:calc(env(safe-area-inset-top,0px) + 64px);align-self:start}
+}
+.rail__title{font-size:.78rem;color:var(--dim);margin-bottom:18px}
+.rail__list{list-style:none;margin:0;padding:0 0 0 24px;display:grid;gap:8px;position:relative}
+.rail__list::before{content:"";position:absolute;left:5px;top:12px;bottom:12px;width:2px;background:var(--line)}
+.rail__list::after{content:"";position:absolute;left:5px;top:12px;width:2px;height:var(--fill,0px);background:var(--accent);transition:height .3s ease}
+.rail a{display:block;padding:5px 0;font-size:.88rem;line-height:1.5;color:var(--dim);text-decoration:none;position:relative;transition:color .15s}
+.rail a::before{content:"";position:absolute;left:-24px;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--ground);border:2px solid var(--line);transition:background-color .15s,border-color .15s}
+.rail a:hover{color:var(--text)}
+.rail a.is-done::before{background:var(--accent);border-color:var(--accent)}
+.rail a.is-on{color:var(--text);font-weight:600}
+.rail a.is-on::before{border-color:var(--accent)}
+.rail__next{margin-top:22px;font-size:.8rem;color:var(--dim);line-height:1.5}
+.rail__next span{display:block;color:var(--text);font-weight:500}
+
+/* Capa */
+.cover__top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-size:.84rem;color:var(--muted)}
+.cover__mark{font-family:var(--display);font-weight:600;font-size:1.02rem;color:var(--text);letter-spacing:.01em}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(2.1rem,7.4vw,3.9rem);line-height:1.04;letter-spacing:-.025em;margin:clamp(56px,12vw,120px) 0 0;text-wrap:balance}
+.cover__lead{font-size:clamp(1.05rem,2.4vw,1.22rem);line-height:1.6;color:var(--muted);max-width:35rem;margin-top:28px}
+
+/* Carimbo: no celular, a validade desce para a última linha para as condições comerciais ficarem juntas */
+.stamp{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);margin:clamp(44px,8vw,72px) 0 0}
+.stamp__late{order:1}
+@media (min-width:720px){.stamp{grid-template-columns:repeat(3,minmax(0,1fr))}.stamp__late{order:0}}
+.stamp > div{background:var(--ground);padding:18px 20px 20px;min-width:0}
+.stamp dt{font-size:.76rem;color:var(--dim);margin-bottom:8px}
+.stamp dd{margin:0;font-size:.95rem;font-weight:500;line-height:1.4;font-variant-numeric:tabular-nums}
+.stamp dd small{display:block;font-size:.8rem;font-weight:400;color:var(--muted);margin-top:4px}
+.cover__go{margin-top:24px;font-weight:500}
+.cover__go a{text-decoration-color:var(--line);text-underline-offset:5px;text-decoration-thickness:2px}
+.cover__go a:hover{text-decoration-color:var(--accent)}
+
+/* Seções */
+.sec{border-top:1px solid var(--line);margin-top:clamp(72px,12vw,136px);padding-top:clamp(44px,7vw,72px);scroll-margin-top:16px}
+.sec > h2{font-family:var(--display);font-weight:600;font-size:clamp(1.75rem,5.2vw,2.6rem);line-height:1.1;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.sub{font-family:var(--display);font-weight:600;font-size:1.25rem;line-height:1.3;margin:clamp(48px,8vw,72px) 0 0}
+.note{margin-top:28px;color:var(--muted);max-width:36rem}
+.note strong{color:var(--text);font-weight:600}
+
+/* Planos em camadas: o mesmo site nos dois, o Completo com uma camada a mais */
+.layers{display:grid;gap:16px;margin:32px 0 0}
+.layers__row{display:grid;gap:8px;min-width:0}
+@media (min-width:640px){.layers__row{grid-template-columns:6.5rem minmax(0,1fr);gap:18px}}
+.layers__name{font-family:var(--display);font-weight:600;font-size:1.02rem;align-self:center}
+.layers__track{display:grid;gap:6px;min-width:0}
+@media (min-width:560px){.layers__track{grid-template-columns:minmax(0,11fr) minmax(0,9fr)}}
+.layer{border:1px solid var(--line);background:var(--plate);padding:16px 18px;font-weight:600;font-size:.95rem;line-height:1.4;min-width:0}
+.layer small{display:block;font-weight:400;font-size:.84rem;color:var(--muted);margin-top:4px;line-height:1.5}
+.layer--plus{border-color:var(--accent);background:var(--ground)}
+
+/* Planos */
+.plans{display:grid;gap:16px;margin:40px 0 0}
+@media (min-width:640px){.plans{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.plan{position:relative;display:block;min-width:0}
+.plan input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.plan__body{display:flex;flex-direction:column;height:100%;border:1px solid var(--line);padding:24px 24px 22px;transition:border-color .15s,background-color .15s}
+.plan input:checked + .plan__body{border-color:var(--accent);background:var(--plate)}
+.plan input:focus-visible + .plan__body{outline:2px solid var(--accent);outline-offset:3px}
+.plan__head{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:26px}
+.plan__name{font-family:var(--display);font-weight:600;font-size:1.2rem}
+.plan__tag{font-size:.74rem;font-weight:600;background:var(--brand);color:var(--on-accent);padding:3px 9px;border-radius:2px}
+.plan__price{font-family:var(--display);font-weight:600;font-size:2.5rem;line-height:1.1;letter-spacing:-.02em;margin-top:16px;font-variant-numeric:tabular-nums}
+.plan__desc{margin-top:12px;color:var(--text)}
+.plan__meta{margin-top:12px;color:var(--muted);font-size:.93rem}
+.plan__pick{margin-top:auto;padding-top:22px;font-size:.86rem;font-weight:500;display:flex;align-items:center;gap:9px;color:var(--dim)}
+.plan__pick::before{content:"";width:11px;height:11px;border:1px solid var(--dim);border-radius:50%}
+.plan__pick .on{display:none}
+.plan input:checked + .plan__body .plan__pick{color:var(--text)}
+.plan input:checked + .plan__body .plan__pick::before{background:var(--accent);border-color:var(--accent)}
+.plan input:checked + .plan__body .plan__pick .on{display:inline}
+.plan input:checked + .plan__body .plan__pick .off{display:none}
+
+/* Tabela comparativa */
+.tablewrap{margin:56px 0 0;overflow-x:auto}
+.cmp{width:100%;border-collapse:collapse;font-size:.93rem;line-height:1.5}
+.cmp th,.cmp td{padding:18px 0;border-top:1px solid var(--line);vertical-align:top;text-align:left;font-weight:400}
+.cmp thead th{border-top:0;font-weight:600;font-size:.8rem;color:var(--muted);padding-block:12px}
+.cmp .c{width:5.6rem;text-align:center;padding-inline:4px;color:var(--muted);font-variant-numeric:tabular-nums;transition:background-color .15s,color .15s}
+.cmp tbody th{padding-right:16px}
+.cmp tbody th small{display:block;font-size:.82rem;line-height:1.5;color:var(--dim);margin-top:4px}
+.cmp td.v{font-size:.84rem;line-height:1.4}
+.cmp .big td{font-family:var(--display);font-weight:600;font-size:1.3rem;line-height:1.2}
+.cmp .big .cc{color:var(--accent)}
+.cmp .grp th{font-family:var(--display);font-weight:600;font-size:1rem;color:var(--text);padding-top:40px;border-top:0}
+.cmp tbody:first-of-type .grp th{padding-top:16px}
+.cmp .total th,.cmp .total td{font-family:var(--display);font-weight:600;font-size:1.05rem;padding-block:20px}
+.cmp tr:last-child th,.cmp tr:last-child td{border-bottom:1px solid var(--line)}
+.doc[data-plan="essencial"] .cmp .ce,.doc[data-plan="completo"] .cmp .cc{background:var(--plate);color:var(--text)}
+.doc[data-plan="completo"] .cmp .big .cc{color:var(--accent)}
+.yes{display:inline-block;width:9px;height:9px;border-radius:50%;vertical-align:middle;background:var(--text)}
+
+/* Cronograma em escala, com sinal e saldo marcados nas pontas */
+.tl{margin:40px 0 0}
+.tl__pay{display:flex;justify-content:space-between;gap:16px;font-size:.84rem;color:var(--muted);line-height:1.4;margin:40px 0 12px}
+.tl__pay + .tl{margin-top:0}
+.tl__pay > span{border-left:2px solid var(--accent);padding-left:10px}
+.tl__pay > span + span{border-left:0;border-right:2px solid var(--accent);padding-left:0;padding-right:10px;text-align:right}
+.tl__pay strong{display:block;font-family:var(--display);font-weight:600;font-size:1rem;color:var(--text)}
+.tl__bar{display:flex;gap:3px;height:38px}
+.tl__seg{flex:1 1 0;min-width:0;background:var(--plate);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:600;font-size:.92rem;color:var(--muted);position:relative;transition:flex-grow .35s ease}
+.tl__seg--ok::after{content:"";position:absolute;right:-7px;top:50%;width:9px;height:9px;margin-top:-4.5px;background:var(--accent);transform:rotate(45deg);z-index:1}
+.tl__scale{display:flex;justify-content:space-between;font-size:.76rem;color:var(--dim);margin-top:10px;font-variant-numeric:tabular-nums}
+.tl__key{font-size:.84rem;color:var(--muted);margin-top:16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:6px 16px}
+.tl__mark{display:inline-flex;align-items:center;gap:10px}
+.tl__mark::before{content:"";width:8px;height:8px;background:var(--accent);transform:rotate(45deg);flex:none;margin-left:2px}
+
+.steps{list-style:none;margin:32px 0 0;padding:0;counter-reset:step}
+.steps li{counter-increment:step;display:grid;grid-template-columns:2rem minmax(0,1fr);border-top:1px solid var(--line);padding:22px 0}
+.steps li:last-child{border-bottom:1px solid var(--line)}
+.steps li::before{content:counter(step);font-family:var(--display);font-weight:600;color:var(--accent);font-size:1.08rem;line-height:1.5}
+.steps h3{margin:0;font-family:var(--display);font-size:1.08rem;font-weight:600;line-height:1.5;display:flex;flex-wrap:wrap;gap:0 14px;justify-content:space-between;align-items:baseline}
+.steps h3 span{font-family:var(--body);font-weight:400;font-size:.84rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.steps p{margin-top:4px;color:var(--muted)}
+
+/* Condições: termo e explicação */
+.pairs{margin:32px 0 0;display:grid}
+.pairs > div{display:grid;gap:4px 28px;border-top:1px solid var(--line);padding:20px 0;min-width:0}
+.pairs > div:last-child{border-bottom:1px solid var(--line)}
+@media (min-width:640px){.pairs > div{grid-template-columns:minmax(0,9.5rem) minmax(0,1fr);align-items:baseline}}
+.pairs dt{font-family:var(--display);font-weight:600;font-size:1.04rem;line-height:1.4}
+.pairs dd{margin:0;color:var(--muted)}
+
+/* Aprovação */
+.approve{margin:36px 0 0;border:1px solid var(--accent);background:var(--plate);padding:clamp(24px,4vw,36px)}
+.approve__switch{display:flex;gap:8px;flex-wrap:wrap}
+.chip{position:relative;display:block}
+.chip input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+.chip span{display:block;border:1px solid var(--line);background:var(--ground);padding:9px 16px;font-size:.92rem;font-weight:500;color:var(--muted);transition:background-color .15s,color .15s,border-color .15s}
+.chip input:checked + span{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.chip input:focus-visible + span{outline:2px solid var(--accent);outline-offset:3px}
+.sum{display:grid;margin:26px 0 0}
+.sum > div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;border-top:1px solid var(--line);padding:14px 0}
+.sum dt{color:var(--muted);font-size:.93rem}
+.sum dd{margin:0;font-family:var(--display);font-weight:600;font-size:1.08rem;text-align:right;font-variant-numeric:tabular-nums}
+
+/* Depois da aprovação: fluxo em etapas */
+.flow{list-style:none;margin:28px 0 0;padding:0;display:grid;gap:14px}
+.flow li{position:relative;border:1px solid var(--line);background:var(--plate);padding:16px 18px;min-width:0}
+.flow strong{display:block;font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.3}
+.flow span{display:block;font-size:.84rem;color:var(--muted);margin-top:4px;line-height:1.45}
+.flow li + li::before{content:"";position:absolute;left:24px;top:-15px;width:2px;height:14px;background:var(--line)}
+.flow li:last-child{border-color:var(--accent);background:var(--ground)}
+@media (min-width:760px){
+  .flow{grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+  .flow li + li::before{left:-15px;top:50%;width:14px;height:2px}
+}
+
+.foot{margin-top:clamp(72px,12vw,136px);border-top:1px solid var(--line);padding-top:24px;font-size:.84rem;color:var(--dim)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none!important}
+}
+@media print{
+  .rail{display:none!important}
+  .page{padding-bottom:0}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .sec,.pairs > div,.plan,.steps li,.cmp tr,.flow li,.layers{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="page" lang="pt-BR">
+<div class="frame">
+
+<nav class="rail" aria-label="Bússola da proposta">
+  <p class="rail__title">Nesta proposta</p>
+  <ol class="rail__list" id="bussola">
+    <li><a href="#topo">Início</a></li>
+    <li><a href="#planos">Planos</a></li>
+    <li><a href="#etapas">Etapas e prazo</a></li>
+    <li><a href="#condicoes">Condições</a></li>
+    <li><a href="#aprovar">Aprovar</a></li>
+  </ol>
+  <p class="rail__next" id="proxima">A seguir<span>Planos</span></p>
+</nav>
+
+<main class="doc" id="doc" data-plan="completo">
+
+<header class="cover" id="topo">
+  <div class="cover__top">
+    <span class="cover__mark">Henrique Primo Martins</span>
+    <span>Proposta comercial</span>
+  </div>
+  <h1>Redesign de site institucional da Havi Ferramentas para o comprador que tem pressa.</h1>
+  <p class="cover__lead">A cotação fica no centro do site. A estrutura das páginas está no mapa do Miro, e aqui ficam os planos, o prazo e as condições.</p>
+
+  <dl class="stamp">
+    <div><dt>Cliente</dt><dd>Havi Ferramentas</dd></div>
+    <div><dt>Data</dt><dd><span data-bind="data">8 de outubro de 2026</span><small>São Paulo</small></dd></div>
+    <div class="stamp__late"><dt>Validade</dt><dd>até <span data-bind="validade">15 de outubro de 2026</span><small>7 dias</small></dd></div>
+    <div><dt>Investimento</dt><dd><span data-bind="essencial.preco">R$&nbsp;4.000</span> ou <span data-bind="completo.preco">R$&nbsp;6.000</span><small>dois planos, sem mensalidade</small></dd></div>
+    <div><dt>Prazo de entrega</dt><dd><span data-bind="essencial.dias">30</span> ou <span data-bind="completo.dias">45</span> dias<small>conforme o plano</small></dd></div>
+    <div><dt>Pagamento</dt><dd>50% no aceite, 50% na publicação<small>via Pix</small></dd></div>
+  </dl>
+  <p class="cover__go"><a href="https://miro.com/app/board/uXjVEea1q9k=/?share_link_id=71671962473" target="_blank" rel="noopener">Ver o mapa do site no Miro</a></p>
+</header>
+
+<section class="sec" id="planos">
+  <h2>Planos</h2>
+  <div class="layers">
+    <div class="layers__row">
+      <span class="layers__name">Essencial</span>
+      <div class="layers__track">
+        <div class="layer">Site do mapa<small>Mesma qualidade visual nos dois planos.</small></div>
+      </div>
+    </div>
+    <div class="layers__row">
+      <span class="layers__name">Completo</span>
+      <div class="layers__track">
+        <div class="layer">Site do mapa<small>Mesma qualidade visual nos dois planos.</small></div>
+        <div class="layer layer--plus">Catálogo de produtos e base de SEO<small>Trabalho operacional a mais. Com mais tempo de execução, sai mais otimizado.</small></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="plans" role="radiogroup" aria-label="Escolha do plano">
+    <label class="plan">
+      <input type="radio" name="plano" id="plano-essencial" value="essencial">
+      <span class="plan__body">
+        <span class="plan__head"><span class="plan__name">Essencial</span></span>
+        <span class="plan__price" data-bind="essencial.preco">R$&nbsp;4.000</span>
+        <span class="plan__desc">O site completo do mapa, com a cotação no centro.</span>
+        <span class="plan__meta">Entrega em <span data-bind="essencial.dias">30</span> dias. Garantia de <span data-bind="essencial.garantia">30</span>&nbsp;dias.</span>
+        <span class="plan__pick"><span class="off">Selecionar este plano</span><span class="on">Plano selecionado</span></span>
+      </span>
+    </label>
+    <label class="plan">
+      <input type="radio" name="plano" id="plano-completo" value="completo" checked>
+      <span class="plan__body">
+        <span class="plan__head"><span class="plan__name">Completo</span><span class="plan__tag">Recomendado</span></span>
+        <span class="plan__price" data-bind="completo.preco">R$&nbsp;6.000</span>
+        <span class="plan__desc">O mesmo site, com o catálogo de produtos e a base de SEO.</span>
+        <span class="plan__meta">Entrega em <span data-bind="completo.dias">45</span> dias. Garantia de <span data-bind="completo.garantia">60</span>&nbsp;dias.</span>
+        <span class="plan__pick"><span class="off">Selecionar este plano</span><span class="on">Plano selecionado</span></span>
+      </span>
+    </label>
+  </div>
+  <p class="note"><strong>Recomendo o Completo.</strong> Vocês contaram que um bom cliente chegou até a Havi pesquisando amperímetro na internet. O catálogo com base de SEO prepara cada linha de produto para ser encontrada do mesmo jeito.</p>
+
+  <div class="tablewrap">
+    <table class="cmp">
+      <caption class="sr-only">O que entra em cada plano</caption>
+      <thead>
+        <tr><th scope="col">O que entra</th><th scope="col" class="c ce">Essencial</th><th scope="col" class="c cc">Completo</th></tr>
+      </thead>
+      <tbody>
+        <tr class="grp"><th scope="colgroup" colspan="3">Site</th></tr>
+        <tr><th scope="row">Páginas do mapa: Home, Cotação, Produtos, Sobre nós, Cases e Parceiros</th><td class="c ce"><span class="yes" aria-hidden="true"></span><span class="sr-only">Incluso</span></td><td class="c cc"><span class="yes" aria-hidden="true"></span><span class="sr-only">Incluso</span></td></tr>
+        <tr><th scope="row">Cotação com anexo de planilha, PDF ou foto, direto no e-mail do comercial</th><td class="c ce"><span class="yes" aria-hidden="true"></span><span class="sr-only">Incluso</span></td><td class="c cc"><span class="yes" aria-hidden="true"></span><span class="sr-only">Incluso</span></td></tr>
+        <tr><th scope="row">Troca do site sem derrubar e-mails nem links antigos</th><td class="c ce"><span class="yes" aria-hidden="true"></span><span class="sr-only">Incluso</span></td><td class="c cc"><span class="yes" aria-hidden="true"></span><span class="sr-only">Incluso</span></td></tr>
+      </tbody>
+      <tbody>
+        <tr class="grp"><th scope="colgroup" colspan="3">Catálogo e SEO</th></tr>
+        <tr class="big"><th scope="row">Páginas que o Google pode mostrar<small>Cada página é uma porta de entrada para quem pesquisa um produto, como alicate amperímetro.</small></th><td class="c ce">6</td><td class="c cc">até 125</td></tr>
+        <tr><th scope="row">Catálogo de produtos<small>No Essencial, as 19 linhas e as subcategorias ficam numa página só. No Completo, cada linha e até 100 subcategorias ganham página própria, com descrição técnica, marcas e cotação já preenchida.</small></th><td class="c v ce">1 página</td><td class="c v cc">até 120 páginas</td></tr>
+        <tr><th scope="row">SEO<small>Técnico: velocidade, títulos e descrições. Conteúdo: pesquisa do que o comprador digita no Google, textos escritos para essas buscas, Search Console e Analytics.</small></th><td class="c v ce">Técnico</td><td class="c v cc">Técnico e conteúdo</td></tr>
+      </tbody>
+      <tbody>
+        <tr class="grp"><th scope="colgroup" colspan="3">Depois da publicação</th></tr>
+        <tr><th scope="row">Garantia<small>Correção de erros. No Completo, também pequenos ajustes de conteúdo.</small></th><td class="c v ce"><span data-bind="essencial.garantia">30</span> dias</td><td class="c v cc"><span data-bind="completo.garantia">60</span> dias</td></tr>
+        <tr><th scope="row">Revisão aos 6 meses<small>Uma rodada de melhorias com a lista de vocês e os dados de busca do Google.</small></th><td class="c v ce">À parte</td><td class="c v cc">Inclusa</td></tr>
+        <tr><th scope="row">Hospedagem inclusa</th><td class="c v ce">12 meses</td><td class="c v cc">12 meses</td></tr>
+      </tbody>
+      <tbody>
+        <tr class="total"><th scope="row">Prazo de entrega</th><td class="c ce"><span data-bind="essencial.dias">30</span> dias</td><td class="c cc"><span data-bind="completo.dias">45</span> dias</td></tr>
+        <tr class="total"><th scope="row">Investimento</th><td class="c ce" data-bind="essencial.preco">R$&nbsp;4.000</td><td class="c cc" data-bind="completo.preco">R$&nbsp;6.000</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="note">Anúncios pagos e loja virtual ficam para uma próxima fase.</p>
+</section>
+
+<section class="sec" id="etapas">
+  <h2>Etapas e prazo</h2>
+
+  <div class="tl__pay"><span><strong>Sinal 50%</strong><span data-sel="sinal">R$&nbsp;3.000</span> no aceite</span><span><strong>Saldo 50%</strong><span data-sel="saldo">R$&nbsp;3.000</span> na publicação</span></div>
+  <div class="tl" role="img" aria-label="Cronograma em escala das quatro etapas, com aprovações ao fim da primeira e da segunda">
+    <div class="tl__bar">
+      <div class="tl__seg tl__seg--ok" data-seg="0" style="flex-grow:6">1</div>
+      <div class="tl__seg tl__seg--ok" data-seg="1" style="flex-grow:7">2</div>
+      <div class="tl__seg" data-seg="2" style="flex-grow:24">3</div>
+      <div class="tl__seg" data-seg="3" style="flex-grow:8">4</div>
+    </div>
+    <div class="tl__scale"><span>dia 1</span><span>dia <span data-sel="dias">45</span></span></div>
+  </div>
+  <p class="tl__key"><span class="tl__mark">Aprovação de vocês</span><span>Plano <span data-sel="nome">Completo</span></span></p>
+
+  <ol class="steps">
+    <li><div><h3>Estrutura <span data-sel="etapa0">dias 1 a 6</span></h3><p>Mapa do site e esqueleto de cada página. Vocês aprovam.</p></div></li>
+    <li><div><h3>Visual <span data-sel="etapa1">dias 7 a 13</span></h3><p>Uma direção visual recomendada, com referências. Vocês aprovam.</p></div></li>
+    <li><div><h3>Construção <span data-sel="etapa2">dias 14 a 37</span></h3><p>Programação, textos e testes. No Completo, inclui o catálogo e a base de SEO.</p></div></li>
+    <li><div><h3>Revisão e publicação <span data-sel="etapa3">dias 38 a 45</span></h3><p>Vocês revisam comigo e publicamos.</p></div></li>
+  </ol>
+  <p class="note">Prazo em dias corridos, a partir do sinal. Pausa enquanto houver aprovação ou material pendente.</p>
+</section>
+
+<section class="sec" id="condicoes">
+  <h2>Condições</h2>
+  <dl class="pairs">
+    <div><dt>Pagamento</dt><dd>50% no aceite e 50% na publicação, via Pix.</dd></div>
+    <div><dt>Ajustes</dt><dd>Uma rodada em cada aprovação e duas na revisão final. O que passar disso é orçado antes.</dd></div>
+    <div><dt>Conteúdo</dt><dd>Textos por minha conta. Fotos e dados de produto, por conta da Havi.</dd></div>
+    <div><dt>Propriedade</dt><dd>O domínio é da Havi. Com a quitação, o site e o conteúdo são de vocês.</dd></div>
+    <div><dt>Manutenção</dt><dd>Um bom site continua sendo aprimorado. Recomendo usar o site no dia a dia e anotar, ao longo de 6 a 12 meses, o que pode melhorar. Depois, vocês me mandam essa lista e eu faço as melhorias. No Completo, a primeira rodada já está inclusa.</dd></div>
+  </dl>
+</section>
+
+<section class="sec" id="aprovar">
+  <h2>Aprovar</h2>
+
+  <div class="approve">
+    <div class="approve__switch" role="radiogroup" aria-label="Plano a aprovar">
+      <label class="chip"><input type="radio" name="plano-aprovar" id="aprovar-essencial" value="essencial"><span>Essencial</span></label>
+      <label class="chip"><input type="radio" name="plano-aprovar" id="aprovar-completo" value="completo" checked><span>Completo</span></label>
+    </div>
+    <dl class="sum">
+      <div><dt>Investimento</dt><dd data-sel="preco">R$&nbsp;6.000</dd></div>
+      <div><dt>Sinal no aceite</dt><dd data-sel="sinal">R$&nbsp;3.000</dd></div>
+      <div><dt>Saldo na publicação</dt><dd data-sel="saldo">R$&nbsp;3.000</dd></div>
+      <div><dt>Prazo de entrega</dt><dd><span data-sel="dias">45</span> dias</dd></div>
+    </dl>
+  </div>
+
+  <h3 class="sub">Depois da aprovação</h3>
+  <ol class="flow">
+    <li><strong>Aprovação</strong><span>plano escolhido</span></li>
+    <li><strong>Até 3 dias</strong><span>plano completo do site</span></li>
+    <li><strong>Reunião com vocês</strong><span>alinhamento completo</span></li>
+    <li><strong>Lista de pendências</strong><span>com prazo de envio</span></li>
+    <li><strong>Produção</strong><span>no prazo combinado</span></li>
+  </ol>
+  <p class="note">Uma pendência já conhecida são os kits de mídia das marcas, que os fornecedores enviam para vocês. A maior parte do trabalho eu faço de forma independente, mas algumas informações só quem está dentro da Havi tem. São elas que deixam o resultado final com a cara de vocês.</p>
+</section>
+
+<footer class="foot">
+  <p>Henrique Primo Martins, São Paulo. Proposta de <span data-bind="data">8 de outubro de 2026</span>, válida até <span data-bind="validade">15 de outubro de 2026</span>.</p>
+</footer>
+
+</main>
+</div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* Tudo o que muda de proposta para proposta fica aqui. O texto fixo do HTML repete estes valores
+     e é atualizado por este bloco quando a página abre. */
+  var CONFIG = {
+    data: '8 de outubro de 2026',
+    validade: '15 de outubro de 2026',
+    planoPadrao: 'completo',
+    planos: {
+      essencial: { nome: 'Essencial', preco: 4000, dias: 30, garantia: 30, etapas: [[1, 5], [6, 11], [12, 24], [25, 30]] },
+      completo:  { nome: 'Completo',  preco: 6000, dias: 45, garantia: 60, etapas: [[1, 6], [7, 13], [14, 37], [38, 45]] }
+    }
+  };
+
+  var doc = document.getElementById('doc');
+  var ESPACO = String.fromCharCode(160);
+
+  function reais(n) { return 'R$' + ESPACO + Math.round(n).toLocaleString('pt-BR'); }
+
+  function each(sel, fn) { Array.prototype.forEach.call(document.querySelectorAll(sel), fn); }
+
+  /* Valores fixos: datas e os números dos dois planos */
+  function preencherFixos() {
+    var fixos = { data: CONFIG.data, validade: CONFIG.validade };
+    Object.keys(CONFIG.planos).forEach(function (id) {
+      var p = CONFIG.planos[id];
+      fixos[id + '.preco'] = reais(p.preco);
+      fixos[id + '.dias'] = String(p.dias);
+      fixos[id + '.garantia'] = String(p.garantia);
+    });
+    each('[data-bind]', function (el) {
+      var v = fixos[el.getAttribute('data-bind')];
+      if (v !== undefined) el.textContent = v;
+    });
+  }
+
+  /* Tudo o que depende do plano escolhido */
+  function escolher(id) {
+    var p = CONFIG.planos[id];
+    if (!p) return;
+    doc.setAttribute('data-plan', id);
+
+    var sinal = p.preco / 2;
+    var sel = {
+      nome: p.nome, preco: reais(p.preco), sinal: reais(sinal), saldo: reais(p.preco - sinal),
+      dias: String(p.dias), garantia: String(p.garantia)
+    };
+    p.etapas.forEach(function (e, i) { sel['etapa' + i] = 'dias ' + e[0] + ' a ' + e[1]; });
+    each('[data-sel]', function (el) {
+      var v = sel[el.getAttribute('data-sel')];
+      if (v !== undefined) el.textContent = v;
+    });
+
+    each('[data-seg]', function (seg) {
+      var e = p.etapas[Number(seg.getAttribute('data-seg'))];
+      if (e) seg.style.flexGrow = String(e[1] - e[0] + 1);
+    });
+
+    each('input[name="plano"], input[name="plano-aprovar"]', function (r) { r.checked = r.value === id; });
+  }
+
+  each('input[name="plano"], input[name="plano-aprovar"]', function (r) {
+    r.addEventListener('change', function () { if (r.checked) escolher(r.value); });
+  });
+
+  /* Bússola: marca a seção atual, as que já passaram e a próxima */
+  var lista = document.getElementById('bussola');
+  var proxima = document.getElementById('proxima');
+  var links = lista ? Array.prototype.slice.call(lista.querySelectorAll('a')) : [];
+
+  function marcar(id) {
+    var atual = -1;
+    links.forEach(function (a, i) { if (a.getAttribute('href') === '#' + id) atual = i; });
+    if (atual < 0) return;
+    links.forEach(function (a, i) {
+      a.classList.toggle('is-on', i === atual);
+      a.classList.toggle('is-done', i < atual);
+      if (i === atual) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
+    });
+    var alvo = links[atual];
+    lista.style.setProperty('--fill', Math.max(0, alvo.offsetTop + alvo.offsetHeight / 2 - 12) + 'px');
+    var seguinte = links[atual + 1];
+    proxima.hidden = !seguinte;
+    if (seguinte) proxima.querySelector('span').textContent = seguinte.textContent;
+  }
+
+  if (lista && 'IntersectionObserver' in window) {
+    var visto = new IntersectionObserver(function (itens) {
+      itens.forEach(function (it) { if (it.isIntersecting) marcar(it.target.id); });
+    }, { rootMargin: '-20% 0px -65% 0px' });
+    each('#topo, .sec', function (s) { visto.observe(s); });
+  }
+  if (lista) marcar('topo');
+
+  preencherFixos();
+  escolher(CONFIG.planoPadrao);
+})();
+</script>
+</body>
+</html>
